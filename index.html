@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="apapa.png">
+  <meta name="theme-color" content="#c84b16">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>HL Super Trip - Pantas</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="top-bar">
+    <span class="app-brand">HL SUPER</span>
+    <span class="credit-tag">CREATED BY RAHMAN AZHAR</span>
+  </div>
+
+  <div class="card compact-card" id="formCard">
+
+    <!-- BARIS 1: Tarikh & No. Plat -->
+    <div class="row-grid-2">
+      <div>
+        <label>Tarikh</label>
+        <input type="date" id="tarikh">
+      </div>
+      <div>
+        <label>No. Plat</label>
+        <input type="text" id="platNo" placeholder="BKK 1234" onchange="savePlat()">
+      </div>
+    </div>
+
+    <div class="batch-mode-box">
+      <label>
+        <input type="checkbox" id="chkBatchMode">
+        📌 Mod Input Pantas (Rekod Lama)
+      </label>
+    </div>
+
+    <!-- DARI: 2-ROW SWIPE STRIP -->
+    <div class="loc-block">
+      <div class="loc-title-row">
+        <label>Dari (Swipe ⇄)</label>
+        <span class="selected-badge" id="dariBadge">NBCT</span>
+      </div>
+      <div class="swipe-2row-track" id="dariGrid">
+        <button type="button" class="depo-pill active" data-val="NBCT" onclick="pilihDepoPill('dari', 'NBCT')">NBCT</button>
+        <button type="button" class="depo-pill" data-val="EAE" onclick="pilihDepoPill('dari', 'EAE')">EAE</button>
+        <button type="button" class="depo-pill" data-val="ENGKONG" onclick="pilihDepoPill('dari', 'ENGKONG')">ENGKONG</button>
+        <button type="button" class="depo-pill" data-val="MSD" onclick="pilihDepoPill('dari', 'MSD')">MSD</button>
+        <button type="button" class="depo-pill" data-val="COGENT" onclick="pilihDepoPill('dari', 'COGENT')">COGENT</button>
+        <button type="button" class="depo-pill" data-val="PSS" onclick="pilihDepoPill('dari', 'PSS')">PSS</button>
+        <button type="button" class="depo-pill" data-val="MMF1" onclick="pilihDepoPill('dari', 'MMF1')">MMF1</button>
+        <button type="button" class="depo-pill" data-val="MMF2" onclick="pilihDepoPill('dari', 'MMF2')">MMF2</button>
+        <button type="button" class="depo-pill" data-val="IPD" onclick="pilihDepoPill('dari', 'IPD')">IPD</button>
+        <button type="button" class="depo-pill" data-val="OCT" onclick="pilihDepoPill('dari', 'OCT')">OCT</button>
+        <button type="button" class="depo-pill" data-val="KONREP" onclick="pilihDepoPill('dari', 'KONREP')">KONREP</button>
+        <button type="button" class="depo-pill" data-val="BUMIKON" onclick="pilihDepoPill('dari', 'BUMIKON')">BUMIKON</button>
+        <button type="button" class="depo-pill" data-val="GL" onclick="pilihDepoPill('dari', 'GL')">GL</button>
+        <button type="button" class="depo-pill" data-val="TRILIMAHU" onclick="pilihDepoPill('dari', 'TRILIMAHU')">TRILIMAHU</button>
+        <button type="button" class="depo-pill" data-val="ICS" onclick="pilihDepoPill('dari', 'ICS')">ICS</button>
+        <button type="button" class="depo-pill" data-val="SSM" onclick="pilihDepoPill('dari', 'SSM')">SSM</button>
+        <button type="button" class="depo-pill manual-pill" data-val="MANUAL" onclick="pilihDepoPill('dari', 'MANUAL')">+ MANUAL</button>
+      </div>
+      <input type="hidden" id="dariSelect" value="NBCT">
+      <input type="text" id="dariManual" placeholder="TAIP LOKASI DARI..." style="display:none; margin-top:4px;">
+    </div>
+
+    <!-- BUTANG TUKAR ARAH -->
+    <div class="swap-container">
+      <button type="button" class="btn-swap" onclick="swapLokasi()">⇅ Tukar Arah</button>
+    </div>
+
+    <!-- KE: 2-ROW SWIPE STRIP -->
+    <div class="loc-block">
+      <div class="loc-title-row">
+        <label>Ke (Swipe ⇄)</label>
+        <span class="selected-badge" id="keBadge">PSS</span>
+      </div>
+      <div class="swipe-2row-track" id="keGrid">
+        <button type="button" class="depo-pill" data-val="NBCT" onclick="pilihDepoPill('ke', 'NBCT')">NBCT</button>
+        <button type="button" class="depo-pill" data-val="EAE" onclick="pilihDepoPill('ke', 'EAE')">EAE</button>
+        <button type="button" class="depo-pill" data-val="ENGKONG" onclick="pilihDepoPill('ke', 'ENGKONG')">ENGKONG</button>
+        <button type="button" class="depo-pill" data-val="MSD" onclick="pilihDepoPill('ke', 'MSD')">MSD</button>
+        <button type="button" class="depo-pill" data-val="COGENT" onclick="pilihDepoPill('ke', 'COGENT')">COGENT</button>
+        <button type="button" class="depo-pill active" data-val="PSS" onclick="pilihDepoPill('ke', 'PSS')">PSS</button>
+        <button type="button" class="depo-pill" data-val="MMF1" onclick="pilihDepoPill('ke', 'MMF1')">MMF1</button>
+        <button type="button" class="depo-pill" data-val="MMF2" onclick="pilihDepoPill('ke', 'MMF2')">MMF2</button>
+        <button type="button" class="depo-pill" data-val="IPD" onclick="pilihDepoPill('ke', 'IPD')">IPD</button>
+        <button type="button" class="depo-pill" data-val="OCT" onclick="pilihDepoPill('ke', 'OCT')">OCT</button>
+        <button type="button" class="depo-pill" data-val="KONREP" onclick="pilihDepoPill('ke', 'KONREP')">KONREP</button>
+        <button type="button" class="depo-pill" data-val="BUMIKON" onclick="pilihDepoPill('ke', 'BUMIKON')">BUMIKON</button>
+        <button type="button" class="depo-pill" data-val="GL" onclick="pilihDepoPill('ke', 'GL')">GL</button>
+        <button type="button" class="depo-pill" data-val="TRILIMAHU" onclick="pilihDepoPill('ke', 'TRILIMAHU')">TRILIMAHU</button>
+        <button type="button" class="depo-pill" data-val="ICS" onclick="pilihDepoPill('ke', 'ICS')">ICS</button>
+        <button type="button" class="depo-pill" data-val="SSM" onclick="pilihDepoPill('ke', 'SSM')">SSM</button>
+        <button type="button" class="depo-pill manual-pill" data-val="MANUAL" onclick="pilihDepoPill('ke', 'MANUAL')">+ MANUAL</button>
+      </div>
+      <input type="hidden" id="keSelect" value="PSS">
+      <input type="text" id="keManual" placeholder="TAIP LOKASI KE..." style="display:none; margin-top:4px;">
+    </div>
+
+    <!-- KONTENA 1 & 2 -->
+    <label>Kontena 1</label>
+    <div class="kontena-row">
+      <input type="text" id="kontena1" class="kontena-input" maxlength="12" placeholder="TCKU 1234567" autocomplete="off" autocapitalize="characters">
+      <div class="saiz-toggle">
+        <label><input type="radio" name="saiz1" value="40 KAKI" checked><span>40'</span></label>
+        <label><input type="radio" name="saiz1" value="20 KAKI"><span>20'</span></label>
+      </div>
+    </div>
+
+    <label>Kontena 2 (Jika Ada)</label>
+    <div class="kontena-row">
+      <input type="text" id="kontena2" class="kontena-input" maxlength="12" placeholder="MSKU 7654321" autocomplete="off" autocapitalize="characters">
+      <div class="saiz-toggle">
+        <label><input type="radio" name="saiz2" value="40 KAKI"><span>40'</span></label>
+        <label><input type="radio" name="saiz2" value="20 KAKI" checked><span>20'</span></label>
+      </div>
+    </div>
+
+    <!-- JENIS JOB -->
+    <label>Jenis Job</label>
+    <div class="job-grid">
+      <label class="job-pill"><input type="radio" name="jenisJob" value="MT EKSPORT"><span>MT Eksport</span></label>
+      <label class="job-pill"><input type="radio" name="jenisJob" value="IMPORT"><span>Import</span></label>
+      <label class="job-pill"><input type="radio" name="jenisJob" value="KANTANG"><span>Kantang</span></label>
+      <label class="job-pill"><input type="radio" name="jenisJob" value="RAILING"><span>Railing</span></label>
+      <label class="job-pill"><input type="radio" name="jenisJob" value="OFFHIRE"><span>Offhire</span></label>
+      <label class="job-pill"><input type="radio" name="jenisJob" value="SALE UNIT"><span>Sale Unit</span></label>
+      <label class="job-pill"><input type="radio" name="jenisJob" value="FLAT RACK (BUNDLE)"><span>Flat Rack</span></label>
+    </div>
+
+    <input type="text" id="notaTambahan" placeholder="Nota tambahan (Lokasi drop, resit...)" style="margin-top: 8px;">
+    <input type="hidden" id="editId" value="">
+  </div>
+
+  <!-- BUTANG SIMPAN MELEKAT DI BAWAH -->
+  <div class="sticky-action-bar">
+    <button type="button" class="btn-main" id="btnSimpan" onclick="simpanTrip()">💾 SIMPAN TRIP</button>
+    <button type="button" class="btn-update" id="btnUpdate" onclick="updateTrip()" style="display:none;">🔄 KEMASKINI TRIP</button>
+  </div>
+
+  <!-- REKOD TRIP -->
+  <div class="card">
+    <h2>Fail Rekod Trip</h2>
+    <div class="filter-box">
+      <select id="monthFilter" onchange="paparTrip()">
+        <option value="ALL">-- SEMUA REKOD BULAN --</option>
+      </select>
+    </div>
+
+    <div class="counter-box">
+      <div class="counter-card">
+        <p>Hari Ini</p>
+        <span id="countToday">0</span>
+      </div>
+      <div class="counter-card">
+        <p id="labelTotal">Total Bulan</p>
+        <span id="countTotal">0</span>
+      </div>
+    </div>
+
+    <div id="listTrip">Belum ada trip direkodkan.</div>
+
+    <div class="btn-group">
+      <button class="btn-copy" onclick="salinTeks()">📋 Salin</button>
+      <button class="btn-wa" onclick="hantarWhatsApp()">📱 WhatsApp</button>
+      <button class="btn-pdf" onclick="exportPDF()">📄 PDF</button>
+      <button class="btn-clear" onclick="padamSemuaTrip()">🗑️ Clear</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

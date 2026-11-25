@@ -1,0 +1,518 @@
+:root {
+  --bg-dark: #121212;
+  --card-bg: #1e1e1e;
+  --accent: #e65100;
+  --accent-red: #d32f2f;
+  --text-main: #f5f5f5;
+  --text-muted: #aaaaaa;
+  --border: #333333;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  padding: 8px 8px 75px 8px;
+  font-size: 14px;
+}
+
+/* Header Atas */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 4px 8px 4px;
+}
+
+.app-brand {
+  font-family: 'Rubik Glitch', cursive;
+  color: var(--accent);
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.credit-tag {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
+
+/* Kad Utama */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 7px 9px;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* Grid 2 Kolum (Tarikh & Plat) */
+.row-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.batch-mode-box {
+  margin-top: 6px;
+  background: #261a15;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1px dashed var(--accent);
+}
+
+.batch-mode-box label {
+  margin: 0;
+  color: #ff9800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+
+/* Lokasi: 2-Row Swipe Strip */
+.loc-block {
+  margin-top: 5px;
+}
+
+.loc-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.loc-title-row label {
+  margin: 0;
+}
+
+.selected-badge {
+  font-size: 10px;
+  font-weight: 800;
+  color: #ff9800;
+  background: #2b1d14;
+  border: 1px solid var(--accent);
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+
+.swipe-2row-track {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-auto-flow: column;
+  gap: 5px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+
+.swipe-2row-track::-webkit-scrollbar {
+  height: 4px;
+}
+
+.swipe-2row-track::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+.depo-pill {
+  background: #2a2a2a;
+  color: #dcdcdc;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.depo-pill.manual-pill {
+  color: #ffb74d;
+  border-style: dashed;
+}
+
+.depo-pill.active {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: #ff8a50;
+}
+
+/* Butang Swap Tengah */
+.swap-container {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0 2px 0;
+}
+
+.btn-swap {
+  background: #2b2b2b;
+  color: #ff9800;
+  border: 1px solid #555;
+  padding: 3px 12px;
+  border-radius: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Baris Kontena & Saiz Sebaris */
+.kontena-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px;
+  align-items: center;
+}
+
+.kontena-input {
+  font-family: monospace;
+  font-size: 14px !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.saiz-toggle {
+  display: flex;
+  background: #2a2a2a;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #444;
+}
+
+.saiz-toggle label {
+  margin: 0;
+  cursor: pointer;
+}
+
+.saiz-toggle input {
+  display: none;
+}
+
+.saiz-toggle span {
+  display: block;
+  padding: 7px 9px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #aaa;
+}
+
+.saiz-toggle input:checked + span {
+  background: var(--accent-red);
+  color: #fff;
+}
+
+/* Grid Jenis Job */
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.job-pill {
+  margin: 0;
+  cursor: pointer;
+}
+
+.job-pill input {
+  display: none;
+}
+
+.job-pill span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 30px;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #ccc;
+  padding: 4px;
+  line-height: 1.2;
+}
+
+.job-pill input:checked + span {
+  background: var(--accent);
+  color: #fff;
+  border-color: #ff8a50;
+}
+
+/* Sticky Action Bar Bawah */
+.sticky-action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(18, 18, 18, 0.96);
+  padding: 8px 10px;
+  border-top: 1px solid var(--border);
+  z-index: 999;
+}
+
+.btn-main, .btn-update {
+  width: 100%;
+  padding: 11px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.btn-main {
+  background: linear-gradient(135deg, var(--accent-red), var(--accent));
+}
+
+.btn-update {
+  background: #2e7d32;
+}
+
+/* Jadual Rekod & Bahagian Bawah */
+h2 {
+  font-size: 15px;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.counter-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.counter-card {
+  background: #262626;
+  padding: 8px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.counter-card p {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.counter-card span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.table-responsive {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 6px;
+}
+
+.trip-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.trip-table th,
+.trip-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #333;
+  text-align: left;
+  vertical-align: top;
+}
+
+.trip-table th {
+  background: #282828;
+  color: #ff9800;
+  white-space: nowrap;
+}
+
+.action-btns {
+  display: flex;
+  gap: 4px;
+}
+
+.btn-edit-single, .btn-del-single {
+  padding: 3px 6px;
+  font-size: 10px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-edit-single {
+  background: #1976d2;
+}
+
+.btn-del-single {
+  background: #c62828;
+}
+
+.btn-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.btn-group button {
+  padding: 8px 4px;
+  border: none;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #fff;
+  background: #333;
+  cursor: pointer;
+}
+/* =========================================
+   MOD CETAK / EKSPORT PDF (JADUAL SAHAJA)
+   ========================================= */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    font-size: 11px !important;
+  }
+
+  /* Sorok borang input, butang, filter & elemen tidak perlu */
+  #formCard,
+  .top-bar,
+  .sticky-action-bar,
+  .filter-box,
+  .btn-group,
+  .subtext,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Kad rekod jadi bersih penuh lebar kertas */
+  .card {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  h2 {
+    color: #000000 !important;
+    font-size: 15px !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* Ringkasan jumlah trip */
+  .counter-box {
+    display: flex !important;
+    gap: 12px !important;
+    margin: 6px 0 10px 0 !important;
+  }
+
+  .counter-card {
+    background: #f4f4f4 !important;
+    border: 1px solid #cccccc !important;
+    padding: 6px 10px !important;
+    flex: 1;
+  }
+
+  .counter-card p {
+    color: #333333 !important;
+    font-size: 10px !important;
+  }
+
+  .counter-card span {
+    color: #000000 !important;
+    font-size: 15px !important;
+  }
+
+  /* Jadual jelas dengan garis hitam */
+  .table-responsive {
+    overflow: visible !important;
+  }
+
+  .trip-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    font-size: 10px !important;
+    color: #000000 !important;
+  }
+
+  .trip-table th {
+    background: #e6e6e6 !important;
+    color: #000000 !important;
+    border: 1px solid #333333 !important;
+    padding: 5px 6px !important;
+  }
+
+  .trip-table td {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #666666 !important;
+    padding: 5px 6px !important;
+    word-break: break-word;
+  }
+
+  /* Sorok kolum Tindakan (Edit / Padam) dalam PDF */
+  .trip-table th:last-child,
+  .trip-table td:last-child {
+    display: none !important;
+  }
+}
