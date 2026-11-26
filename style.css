@@ -416,15 +416,23 @@ h2 {
 /* =========================================
    MOD CETAK / EKSPORT PDF (JADUAL SAHAJA)
    ========================================= */
+/* =========================================
+   MOD CETAK / EKSPORT PDF (TEMA OREN HITAM)
+   ========================================= */
 @media print {
   @page {
     size: A4 portrait;
-    margin: 12mm;
+    margin: 10mm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   html, body {
     background: #ffffff !important;
-    color: #000000 !important;
+    color: #111111 !important;
     padding: 0 !important;
     margin: 0 !important;
     overflow: visible !important;
@@ -442,72 +450,107 @@ h2 {
     display: none !important;
   }
 
-  /* Kad rekod jadi bersih penuh lebar kertas */
+  /* Kad rekod berbingkai Oren-Hitam */
   .card {
     background: #ffffff !important;
-    color: #000000 !important;
-    border: none !important;
+    color: #111111 !important;
+    border: 2.5px solid #e65100 !important;
+    border-top: 8px solid #121212 !important;
+    border-radius: 8px !important;
     box-shadow: none !important;
-    padding: 0 !important;
+    padding: 12px !important;
     margin: 0 !important;
     overflow: visible !important;
   }
 
   h2 {
-    color: #000000 !important;
-    font-size: 15px !important;
-    margin-bottom: 6px !important;
+    background: #121212 !important;
+    color: #ff9800 !important;
+    border-left: 6px solid #e65100 !important;
+    padding: 7px 10px !important;
+    font-size: 14px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    margin-bottom: 8px !important;
+    border-radius: 4px !important;
+  }
+
+  /* Kotak info plat & tarikh cetak */
+  #pdfPrintHeader {
+    background: #fff3e0 !important;
+    border: 1.5px solid #e65100 !important;
+    border-left: 5px solid #121212 !important;
+    color: #121212 !important;
+    padding: 6px 10px !important;
+    border-radius: 4px !important;
+    margin-bottom: 8px !important;
+    font-size: 11px !important;
   }
 
   /* Ringkasan jumlah trip */
   .counter-box {
     display: flex !important;
-    gap: 12px !important;
+    gap: 10px !important;
     margin: 6px 0 10px 0 !important;
   }
 
   .counter-card {
-    background: #f4f4f4 !important;
-    border: 1px solid #cccccc !important;
+    background: #fafafa !important;
+    border: 1.5px solid #121212 !important;
+    border-bottom: 3px solid #e65100 !important;
+    border-radius: 5px !important;
     padding: 6px 10px !important;
     flex: 1;
   }
 
   .counter-card p {
-    color: #333333 !important;
+    color: #444444 !important;
     font-size: 10px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
   }
 
   .counter-card span {
-    color: #000000 !important;
-    font-size: 15px !important;
+    color: #e65100 !important;
+    font-size: 16px !important;
+    font-weight: 800 !important;
   }
 
-  /* Jadual jelas dengan garis hitam */
+  /* Jadual berjalur Oren-Hitam */
   .table-responsive {
     overflow: visible !important;
+    border: 1.5px solid #121212 !important;
+    border-radius: 4px !important;
   }
 
   .trip-table {
     width: 100% !important;
     border-collapse: collapse !important;
     font-size: 10px !important;
-    color: #000000 !important;
+    color: #111111 !important;
   }
 
   .trip-table th {
-    background: #e6e6e6 !important;
-    color: #000000 !important;
+    background: #121212 !important;
+    color: #ffffff !important;
     border: 1px solid #333333 !important;
-    padding: 5px 6px !important;
+    border-bottom: 2.5px solid #e65100 !important;
+    padding: 6px 6px !important;
+    text-transform: uppercase !important;
+    font-size: 9.5px !important;
   }
 
   .trip-table td {
     background: #ffffff !important;
-    color: #000000 !important;
-    border: 1px solid #666666 !important;
+    color: #111111 !important;
+    border: 1px solid #cccccc !important;
     padding: 5px 6px !important;
     word-break: break-word;
+  }
+
+  /* Jalur selang-seli lembut supaya senang baca baris */
+  .trip-table tbody tr:nth-child(even) td {
+    background: #fff8f3 !important;
   }
 
   /* Sorok kolum Tindakan (Edit / Padam) dalam PDF */
