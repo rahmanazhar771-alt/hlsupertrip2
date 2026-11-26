@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hl-super-trip-v1';
+const CACHE_NAME = 'hl-super-trip-v2';
 
 const CORE_ASSETS = [
   './',
