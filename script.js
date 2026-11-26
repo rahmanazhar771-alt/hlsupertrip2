@@ -422,11 +422,16 @@ function exportPDF() {
   const selectedMonth = document.getElementById('monthFilter').value;
   const plat = localStorage.getItem('platNo') || 'LORI SAYA';
   const listContainer = document.getElementById('listTrip');
+  const tarikhCetak = new Date().toLocaleDateString('ms-MY');
 
   const printHeader = document.createElement('div');
   printHeader.id = 'pdfPrintHeader';
-  printHeader.style.cssText = 'margin-bottom:8px; font-size:12px; font-weight:bold; color:#000;';
-  printHeader.innerText = `No. Plat: ${plat} | Tapisan: ${selectedMonth === 'ALL' ? 'Semua Bulan' : selectedMonth}`;
+  printHeader.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <span><strong>NO. PLAT:</strong> ${plat} &nbsp;|&nbsp; <strong>REKOD:</strong> ${selectedMonth === 'ALL' ? 'SEMUA BULAN' : selectedMonth}</span>
+      <span style="color:#e65100; font-weight:800;">HL SUPER SDN BHD • ${tarikhCetak}</span>
+    </div>
+  `;
 
   listContainer.prepend(printHeader);
   window.print();
@@ -436,7 +441,6 @@ function exportPDF() {
     if (el) el.remove();
   }, 500);
 }
-
 
 function buatTeksRingkasan() {
   let trips = JSON.parse(localStorage.getItem('myTrips')) || [];
